@@ -50,7 +50,10 @@ CREATE TABLE ProductsubCategory(
 	
 )
 
+SELECT * FROM ProductsubCategory
+
 -- CREATE THE PRODUCT TABLE
+
 
 CREATE TABLE product_lookup(
 
@@ -63,8 +66,47 @@ CREATE TABLE product_lookup(
 	productSize				VARCHAR(10),
 	productCost				DECIMAL(10,4),
 	productPrice			DECIMAL(10,4),
-	
+	productSubcategorykey VARCHAR(50)  REFERENCES ProductsubCategory(productSubcategorykey)
 );
 
+SELECT * FROM product_lookup
+
+ALTER TABLE product_lookup
+DROP COLUMN productSize
+
 ALTER TABLE productsubCategory
-ADD productCategorykey VARCHAR(20)  REFERENCES Product_Category(ProductCategoryKey)
+	ADD productCategorykey VARCHAR(20),
+	ADD CONSTRAINT FOREIGN KEY (productCategorykey) REFERENCES Product_Category(productCategorykey);
+
+CREATE TABLE  returnslookup(
+
+	returns_date 	DATE,
+	territorykey	VARCHAR(20) REFERENCES territory(territoryKey),
+	productkey  	VARCHAR (20) REFERENCES product_lookup(productkey),
+	returnQuantity  INT
+
+)
+
+
+CREATE TABLE  territory(
+
+	territoryKey	VARCHAR(20) PRIMARY KEY,
+	region 			VARCHAR(20),
+	country 		VARCHAR(20),
+	continent 		VARCHAR(20)
+);
+
+
+CREATE TABLE sales(
+
+	productKey		VARCHAR(20) REFERENCES product_lookup(productkey),
+	customerKey		VARCHAR(20) REFERENCES customer_lookup(customerKey),
+	territoryKey 	VARCHAR(20) REFERENCES territory(territoryKey),
+	orderlineItem 	VARCHAR(20),
+	orderQuantity 	INT,
+	StockDate		DATE,
+	OrderNumber	    VARCHAR(20),
+	OrderDate		DATE REFERENCES calendar(OrderDate)
+);
+
+SELECT * FROM sales
