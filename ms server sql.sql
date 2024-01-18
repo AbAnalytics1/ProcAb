@@ -71,12 +71,6 @@ CREATE TABLE product_lookup(
 
 SELECT * FROM product_lookup
 
-ALTER TABLE product_lookup
-DROP COLUMN productSize
-
-ALTER TABLE productsubCategory
-	ADD productCategorykey VARCHAR(20),
-	ADD CONSTRAINT FOREIGN KEY (productCategorykey) REFERENCES Product_Category(productCategorykey);
 
 CREATE TABLE  returnslookup(
 
@@ -110,3 +104,16 @@ CREATE TABLE sales(
 );
 
 SELECT * FROM sales
+
+-- DATA DEFINED LANGUAGE 
+
+-- ALTER THE PRODUCT TABLE
+
+ALTER TABLE product_lookup
+DROP COLUMN productSize
+
+-- ALTER THE PRODUCT SUBCATEGORY TABLE
+
+ALTER TABLE productsubCategory
+	ADD productCategorykey VARCHAR(20),
+	ADD CONSTRAINT FOREIGN KEY (productCategorykey) REFERENCES Product_Category(productCategorykey);
