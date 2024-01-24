@@ -156,3 +156,109 @@ SET HomeOwner =
 		ELSE 'Undefined'
 	END;
 
+-- CONVERT THE VALUES IN THE FIRST AND LAST NAME COLUMN INTO A PROPERCASE.
+
+UPDATE customer_lookup
+SET first_name = CONCAT(UPPER(SUBSTRING(first_name, 1, 1)), LOWER(SUBSTRING(first_name, 2, LEN(first_name) - 1)))
+
+-- LAST NAME
+
+UPDATE customer_lookup
+SET last_name = CONCAT(UPPER(SUBSTRING(last_name, 1, 1)), LOWER(SUBSTRING(last_name, 2, LEN(last_name) - 1)))
+
+--CHECK IF THERE ARE ANY DUPLICATE IN THE CUSTOMER KEY COLUMN
+
+SELECT customerKey, COUNT(customerKey) AS count_of_duplicates
+FROM customer_lookup
+GROUP BY customerKey
+HAVING COUNT(customerKey) > 1;
+
+
+-- ADD A NEW COLUMN AND POPULATE THE COLUMN USING A CONDITION fROM ANOTHER COLUMN
+
+SELECT * FROM customer_lookup
+
+-- FIRST STEP IS TO ADD A NEW COLUMN
+
+ALTER TABLE customer_lookup
+ADD Parent VARCHAR(5);
+
+-- SECOND STEP IS TO UPDATE THE COLUMN USING THE CASE FOR THE CONDITION
+
+UPDATE customer_lookup
+SET Parent =
+	CASE
+		WHEN totalChildren > 0 THEN 'Yes'
+		WHEN totalChildren = 0 THEN 'No'
+	END;
+
+--CATEGORIZE THE ANNUAL INCOME INTO HIGH, MID AND LOW.
+
+ALTER TABLE customer_lookup
+ADD IncomeLevel VARCHAR(20);
+
+UPDATE customer_lookup
+SET IncomeLevel =
+	CASE 
+		WHEN annualIncome >= 150000 THEN 'High'
+        WHEN annualIncome BETWEEN 50000 AND 149999 THEN 'Mid'
+        WHEN annualIncome < 50000 THEN 'Low'
+	END;
+
+
+-- EDA
+-- HOW MANY CLIENTS ARE PARENTS 
+-- ANSWER - THERE ARE 13,068 CLIENTS WHO ARE PARENTS AND 5,080 ARE NOT PARENTS
+
+SELECT
+	COUNT(CASE WHEN Parent ='Yes' THEN 1 END) AS Parent,
+	COUNT(CASE WHEN Parent = 'No' THEN 1 END) AS Not_Parent
+FROM customer_lookup;
+
+-- HOW MANY CLIENTS ARE HIGH, MID,AND LOW INCOME EARNERS 
+
+SELECT 
+    COUNT(CASE WHEN IncomeLevel ='Mid' THEN 1 END) AS MidIncome,
+    COUNT(CASE WHEN IncomeLevel ='low'THEN 1 END) AS LowImcome,
+    COUNT(CASE WHEN IncomeLevel ='High' THEN 1 END) AS HighIncome
+FROM customer_lookup;
+
+-- PRODUCT LOOKUP 
+SELECT * FROM product_lookup
+
+-- CHECK FOR ANY DUPLICATE
+
+SELECT productkey, COUNT(productkey) AS Number_of_Duplicate
+FROM product_lookup
+GROUP BY productkey
+HAVING COUNT(productkey) > 1;
+
+UPDATE  product_lookup
+SET productSKU = TRIM(LEFT(productSKU,2));
+
+UPDATE product_lookup
+SET productCost = ROUND(productCost,2), 
+    productPrice = ROUND(ProductPrice,2);
+
+-- PROVIDE THE LIST OF PRODUCTS THAT HAVE THE HIGHEST PRICE
+
+SELECT productName
+FROM product_lookup
+WHERE productPrice = ( SELECT MAX(productPrice) FROM product_lookup);
+
+-- PROVIDE THE LIST OF PRODUCTS THAT HAVE THE HIGHEST COST OF PRODUCTION
+
+SELECT productName
+FROM product_lookup
+WHERE productCost = ( SELECT MAX(productCost) FROM product_lookup);
+
+
+-- PRODUCT Sub-CATEGORY
+
+--CHECK FOR ANY DUPLICATE AND REMOVE THEM IF ANY
+
+SELECT ProductSubcategorykey, COUNT(ProductSubcategorykey) AS Number_of_Duplicates
+FROM ProductsubCategory
+GROUP BY ProductSubcategorykey
+HAVING COUNT(ProductSubcategorykey) > 1;
+
