@@ -117,3 +117,42 @@ DROP COLUMN productSize
 ALTER TABLE productsubCategory
 	ADD productCategorykey VARCHAR(20),
 	ADD CONSTRAINT FOREIGN KEY (productCategorykey) REFERENCES Product_Category(productCategorykey);
+
+-- PERFORMING EXPLORATORY DATA ANALYSIS ON THE DATASET
+
+--HOW MANY RECORDS ARE FOUND IN THE CUSTOMERS TABLE
+
+SELECT COUNT(*) FROM customer_lookup;
+
+SELECT *FROM customer_lookup
+-- REPLACING VALUES IN THE CUSTOMER TABLE. 
+
+--REPLACE M & S IN MARITAL STATUS IN THE MARITAL STATUS COLUMN WITH MARRIED AND SINGLE RESPECTIVELY
+
+
+UPDATE customer_lookup
+SET maritalstatus = 'Married'
+WHERE maritalstatus ='M';
+
+UPDATE customer_lookup
+SET maritalstatus = 'Single'
+WHERE maritalstatus ='S';
+
+-- A MORE EFFICIENT WAY TO DO THIS IS TO USE THE SYNTAX OR QUERY BELOW
+
+UPDATE customer_lookup
+SET gender =
+	CASE
+		WHEN gender = 'M' THEN 'Male'
+		WHEN gender = 'F' THEN 'Female'
+		ELSE 'Undefined'
+	END;
+
+UPDATE customer_lookup
+SET HomeOwner =
+	CASE
+		WHEN HomeOwner = 'Y' THEN 'Yes'
+		WHEN HomeOwner = 'N' THEN 'No'
+		ELSE 'Undefined'
+	END;
+
