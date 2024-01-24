@@ -446,4 +446,4 @@ EXEC YearlyReturns @returns_date = 2022;
 
 -- WHICH PRODUCT CATEGORY WAS RETURNED MOST
 
-SELECT pr
+
