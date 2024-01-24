@@ -316,6 +316,15 @@ ORDER BY SUM(sales.orderQuantity * product_lookup.productPrice) DESC;
 
 
 
-
+SELECT  Product_Category.ProductCategoryName, SUM(sales.orderQuantity * product_lookup.productPrice) AS Revenue
+FROM sales
+LEFT JOIN product_lookup
+ON sales.productKey = product_lookup.productkey
+LEFT JOIN ProductsubCategory 
+ON product_lookup.productSubcategorykey = productsubCategory.productSubcategorykey
+LEFT JOIN Product_Category 
+ON productsubCategory.productCategorykey = Product_Category.ProductCategoryKey
+GROUP BY Product_Category.ProductCategoryName
+ORDER BY SUM(sales.orderQuantity * product_lookup.productPrice) DESC;
 
 
