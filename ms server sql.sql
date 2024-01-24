@@ -262,3 +262,60 @@ FROM ProductsubCategory
 GROUP BY ProductSubcategorykey
 HAVING COUNT(ProductSubcategorykey) > 1;
 
+-- ANALYSING THE SALES DATA
+-- BEGIN FROM THE CUSTOMER CONTRIBUTIONS TO COMPANY SALES 
+
+-- HOW MANY ORDERS WHERE MADE
+
+SELECT * FROM product_lookup;
+
+-- REVENUE GENERATED FROM CUSTOMERS
+
+ SELECT CONCAT(customer_lookup.first_name, ' ' , customer_lookup.last_name), ROUND(SUM(sales.orderQuantity * product_lookup.productPrice),2) AS Revenue
+ FROM sales
+ LEFT JOIN customer_lookup
+ ON sales.customerKey = customer_lookup.customerKey
+ INNER JOIN product_lookup 
+ ON sales.productKey = product_lookup.productkey
+ GROUP BY CONCAT(customer_lookup.first_name, ' ' ,customer_lookup.last_name)
+ ORDER BY ROUND(SUM(sales.orderQuantity * product_lookup.productPrice),2) DESC;
+
+-- WHO WHERE OUR TOP 10 CUSTOMERS
+
+ SELECT TOP (10)CONCAT(customer_lookup.first_name, ' ' , customer_lookup.last_name) AS FullName, ROUND(SUM(sales.orderQuantity * product_lookup.productPrice),2) AS Revenue
+ FROM sales
+ LEFT JOIN customer_lookup
+ ON sales.customerKey = customer_lookup.customerKey
+ INNER JOIN product_lookup 
+ ON sales.productKey = product_lookup.productkey
+ GROUP BY CONCAT(customer_lookup.first_name, ' ' ,customer_lookup.last_name)
+ ORDER BY ROUND(SUM(sales.orderQuantity * product_lookup.productPrice),2) DESC
+ 
+
+-- QUANTITIES ORDERED BY THE CUSTOMERS
+SELECT TOP (10) CONCAT(customer_lookup.first_name, ' ', customer_lookup.last_name) AS FullName, SUM(sales.orderQuantity) AS TotalQuantity
+FROM sales
+ LEFT JOIN customer_lookup
+ ON sales.customerKey = customer_lookup.customerKey
+LEFT JOIN product_lookup
+ON sales.productKey = product_lookup.productkey
+GROUP BY CONCAT(customer_lookup.first_name, ' ', customer_lookup.last_name)
+ORDER BY SUM(sales.orderQuantity) DESC;
+
+-- PRODUCT ANALYSIS.
+-- FIND THE PROFIT GENERATED FORM THE PRODUCT
+
+SELECT TOP (10) ProductsubCategory.subCategoryName, SUM(sales.orderQuantity * product_lookup.productPrice) AS Revenue
+FROM sales
+LEFT JOIN product_lookup
+ON sales.productKey = product_lookup.productkey
+LEFT JOIN ProductsubCategory 
+ON product_lookup.productSubcategorykey = productsubCategory.productSubcategorykey
+GROUP BY ProductsubCategory.subCategoryName
+ORDER BY SUM(sales.orderQuantity * product_lookup.productPrice) DESC;
+
+
+
+
+
+
