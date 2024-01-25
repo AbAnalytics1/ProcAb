@@ -327,4 +327,24 @@ ON productsubCategory.productCategorykey = Product_Category.ProductCategoryKey
 GROUP BY Product_Category.ProductCategoryName
 ORDER BY SUM(sales.orderQuantity * product_lookup.productPrice) DESC;
 
+-- TERRITORY ANALYSIS
+SELECT territory.country, ROUND(SUM(product_lookup.productPrice * sales.orderQuantity),2) AS Revenue
+FROM sales 
+LEFT JOIN territory
+ON sales.territoryKey = territory.territoryKey
+LEFT JOIN product_lookup
+ON sales.productKey = product_lookup.productkey
+GROUP BY territory.country
+ORDER BY ROUND(SUM(product_lookup.productPrice * sales.orderQuantity),2) DESC;
 
+-- FIND THE REVENUE GENERATED FROM 2020 TO 2022
+SELECT
+
+    SUM(CASE WHEN YEAR(sales.OrderDate) = 2020 THEN product_lookup.productPrice * sales.orderQuantity ELSE 0 END) AS TotalRevenue2020,
+    SUM(CASE WHEN YEAR(sales.OrderDate) = 2021 THEN product_lookup.productPrice * sales.orderQuantity ELSE 0 END) AS TotalRevenue2021,
+    SUM(CASE WHEN YEAR(sales.OrderDate) = 2022 THEN product_lookup.productPrice * sales.orderQuantity ELSE 0 END) AS TotalRevenue2022
+FROM sales
+LEFT JOIN product_lookup 
+ON sales.productKey = product_lookup.productkey
+WHERE
+    YEAR(sales.OrderDate) IN (2020, 2021, 2022)
