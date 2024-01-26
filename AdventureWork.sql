@@ -155,15 +155,7 @@ select * from territory
 
 
 
--- Addressing the issue with the null values in the sales table
-COPY sales (ProductKey, CustomerKey, TerritoryKey, OrderLineItem, OrderQuantity, StockDate, OrderNumber, OrderDate)
-FROM '/Users/abenadonkor/Documents/mergie.csv' WITH CSV HEADER DELIMITER ',';
-SHOW data_directory;
-\ COPY your_table FROM '/Library/PostgreSQL/16/data/mydata/mergie.csv' WITH CSV HEADER DELIMITER ',';
-
-
-
-SELECT COUNT(ordernumber) FROM sales -- There where 56,046 three years
+SELECT COUNT(ordernumber) FROM sales 
 
 SELECT COUNT(ordernumber) FROM sales
 WHERE DATE_PART('YEAR',orderdate

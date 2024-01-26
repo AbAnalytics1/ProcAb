@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{7D338875-9BCF-48C5-948D-17261E827366}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{44476A3F-91FA-4007-9DFC-27C6CC07ED4F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,7 +39,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABz0Pz0DgxE6EveBhq0CTlAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAD2OSBl4a6oXug5KbdPRI7QF1NPuKIYIdY7d/B9BdBaTgAAAAAOgAAAAAIAACAAAABWNNyzSy1QCBtFaLXVgi3ZaZHflEp6vVyf0PJt6bJlRSAAAAC4UkGLhuNoCAVq5YwBh6a/hUW84BaVuXPMDxfwI1cyQ0AAAAB355u9fWRECD9yPr2yQVuQ4kQN8zkGx9M4avJn3n3LMf/SEmcI3VUNqxdRRT0EHfwYTMRB+XScVyDO7CYHSewT</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABz0Pz0DgxE6EveBhq0CTlAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADgXCLyuPT7ATlZ9xutteTSBUmbTVwawPKiPzwFayRX6AAAAAAOgAAAAAIAACAAAAAjiAEwEnnsVCMzb8GH/VDhEGIyPkCeeQactrWcP0ndoyAAAAAikwP3rhS0mnGkt6ZqQclot/R5fWjHowNH80BuFLjln0AAAAAn7E/diXFD8wEo4/9TCLXNwiPCOhxoprugSAzAX0Nt6JmpgHXsoDde9KxxQAOS6otYUzeAWS+RmpXPTma0rftr</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -73,7 +73,7 @@
                   dataType="System.String"
                   description="The name of the table to be fetched."
                   expressionType="Notify"
-                  name="TableName">"public"."sales"</property>
+                  name="TableName">"public"."returns_lookup"</property>
                 <property
                   dataType="System.String"
                   description="The SQL command to be executed."
@@ -159,47 +159,17 @@
                       lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[territorykey]"
                       name="territorykey" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[customerkey]"
-                      codePage="1252"
-                      dataType="str"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[customerkey]"
-                      length="20"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[customerkey]"
-                      name="customerkey" />
+                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[returns_date]"
+                      dataType="dbDate"
+                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[returns_date]"
+                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[returns_date]"
+                      name="returns_date" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderlineitem]"
-                      codePage="1252"
-                      dataType="str"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderlineitem]"
-                      length="20"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderlineitem]"
-                      name="orderlineitem" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderquantity]"
+                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[returnquantity]"
                       dataType="i4"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderquantity]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderquantity]"
-                      name="orderquantity" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[stockdate]"
-                      dataType="dbDate"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[stockdate]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[stockdate]"
-                      name="stockdate" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[ordernumber]"
-                      codePage="1252"
-                      dataType="str"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ordernumber]"
-                      length="20"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[ordernumber]"
-                      name="ordernumber" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderdate]"
-                      dataType="dbDate"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderdate]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderdate]"
-                      name="orderdate" />
+                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[returnquantity]"
+                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[returnquantity]"
+                      name="returnquantity" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -216,35 +186,13 @@
                       length="20"
                       name="territorykey" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[customerkey]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="customerkey" />
+                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[returns_date]"
+                      dataType="dbDate"
+                      name="returns_date" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderlineitem]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="orderlineitem" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderquantity]"
+                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[returnquantity]"
                       dataType="i4"
-                      name="orderquantity" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[stockdate]"
-                      dataType="dbDate"
-                      name="stockdate" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ordernumber]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="ordernumber" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderdate]"
-                      dataType="dbDate"
-                      name="orderdate" />
+                      name="returnquantity" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -269,47 +217,17 @@
                       lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[territorykey]"
                       name="territorykey" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[customerkey]"
-                      codePage="1252"
-                      dataType="str"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[customerkey]"
-                      length="20"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[customerkey]"
-                      name="customerkey" />
+                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[returns_date]"
+                      dataType="dbDate"
+                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[returns_date]"
+                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[returns_date]"
+                      name="returns_date" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[orderlineitem]"
-                      codePage="1252"
-                      dataType="str"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderlineitem]"
-                      length="20"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[orderlineitem]"
-                      name="orderlineitem" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[orderquantity]"
+                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[returnquantity]"
                       dataType="i4"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderquantity]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[orderquantity]"
-                      name="orderquantity" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[stockdate]"
-                      dataType="dbDate"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[stockdate]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[stockdate]"
-                      name="stockdate" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[ordernumber]"
-                      codePage="1252"
-                      dataType="str"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ordernumber]"
-                      length="20"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[ordernumber]"
-                      name="ordernumber" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[orderdate]"
-                      dataType="dbDate"
-                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[orderdate]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[orderdate]"
-                      name="orderdate" />
+                      externalMetadataColumnId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[returnquantity]"
+                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[returnquantity]"
+                      name="returnquantity" />
                     <outputColumn
                       refId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -343,7 +261,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[sales]</property>
+                  name="OpenRowset">[dbo].[returns_lookup]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -405,7 +323,7 @@
                       cachedDataType="str"
                       cachedLength="20"
                       cachedName="productkey"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[productKey]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[productkey]"
                       lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[productkey]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[territorykey]"
@@ -413,97 +331,44 @@
                       cachedDataType="str"
                       cachedLength="20"
                       cachedName="territorykey"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[territoryKey]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[territorykey]"
                       lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[territorykey]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customerkey]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="customerkey"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customerKey]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[customerkey]" />
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[returns_date]"
+                      cachedDataType="dbDate"
+                      cachedName="returns_date"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[returns_date]"
+                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[returns_date]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[orderlineitem]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="orderlineitem"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[orderlineItem]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderlineitem]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[orderquantity]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[returnquantity]"
                       cachedDataType="i4"
-                      cachedName="orderquantity"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[orderQuantity]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderquantity]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[stockdate]"
-                      cachedDataType="dbDate"
-                      cachedName="stockdate"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StockDate]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[stockdate]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ordernumber]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="ordernumber"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderNumber]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[ordernumber]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[orderdate]"
-                      cachedDataType="dbDate"
-                      cachedName="orderdate"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
-                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[orderdate]" />
+                      cachedName="returnquantity"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[returnQuantity]"
+                      lineageId="Package\Data Flow Task\ODBC Source.Outputs[ODBC Source Output].Columns[returnquantity]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[productKey]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[returns_date]"
+                      dataType="wstr"
+                      length="10"
+                      name="returns_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[territorykey]"
                       codePage="1252"
                       dataType="str"
                       length="20"
-                      name="productKey" />
+                      name="territorykey" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customerKey]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[productkey]"
                       codePage="1252"
                       dataType="str"
                       length="20"
-                      name="customerKey" />
+                      name="productkey" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[territoryKey]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="territoryKey" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[orderlineItem]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="orderlineItem" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[orderQuantity]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[returnQuantity]"
                       dataType="i4"
-                      name="orderQuantity" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StockDate]"
-                      dataType="wstr"
-                      length="10"
-                      name="StockDate" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderNumber]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="OrderNumber" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
-                      dataType="wstr"
-                      length="10"
-                      name="OrderDate" />
+                      name="returnQuantity" />
                   </externalMetadataColumns>
                 </input>
               </inputs>

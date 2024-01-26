@@ -370,3 +370,30 @@ LEFT JOIN
 WHERE
     YEAR(sales.OrderDate) IN (2020, 2021, 2022);
 
+-- FIND THE TOTAL QAUNTITY ORDERED IN EACH COUNTRY
+
+
+SELECT territory.country, SUM(sales.orderQuantity) AS totalOrderQuantity
+FROM sales
+LEFT JOIN territory ON sales.territoryKey = territory.territoryKey
+GROUP BY territory.country, territory.region
+ORDER BY SUM(sales.orderQuantity) DESC;
+
+-- ANALYSIS ON THE RETURNS
+-- WHAT IS THE TOTAL AMOUNT OF ORDERS RETURNED
+
+SELECT SUM(returnQuantity)
+FROM returns_lookup
+
+-- WHAT IS THE QUANTITY RETURNED BY TERRITORY (COUNTRY)
+
+SELECT territory.country, SUM(returns_lookup.returnQuantity) AS Total_Returned
+FROM returns_lookup
+LEFT JOIN territory
+ON returns_lookup.territorykey = territory.territoryKey
+GROUP BY territory.country
+ORDER BY SUM(returns_lookup.returnQuantity);
+
+-- QUANTIY RETURNED BY YEARS
+
+
