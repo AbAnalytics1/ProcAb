@@ -408,4 +408,4 @@ WHERE YEAR(returns_lookup.returns_date) = @returns_date
 GROUP BY territory.country
 ORDER BY SUM(returnQuantity) DESC;
 
-EXEC YearlyReturns @returns_date = 2022; -- G
+EXEC YearlyReturns @returns_date = 2022; 
