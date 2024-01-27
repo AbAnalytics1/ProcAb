@@ -394,6 +394,18 @@ ON returns_lookup.territorykey = territory.territoryKey
 GROUP BY territory.country
 ORDER BY SUM(returns_lookup.returnQuantity);
 
--- QUANTIY RETURNED BY YEARS
+-- QUANTIY RETURNED BY TERRITORY FILTERED BY YEARS
 
+-- CREATE A PROCEDURE
 
+CREATE PROCEDURE YearlyReturns @returns_date INT 
+AS
+SELECT territory.country, SUM(returnQuantity)
+FROM returns_lookup
+LEFT JOIN territory
+ON returns_lookup.territorykey =territory.territoryKey
+WHERE YEAR(returns_lookup.returns_date) = @returns_date
+GROUP BY territory.country
+ORDER BY SUM(returnQuantity) DESC;
+
+EXEC YearlyReturns @returns_date = 2022; -- G
