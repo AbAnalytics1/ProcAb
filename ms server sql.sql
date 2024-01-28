@@ -370,6 +370,41 @@ LEFT JOIN
 WHERE
     YEAR(sales.OrderDate) IN (2020, 2021, 2022);
 
+--PROFIT MARGIN
+
+
+CREATE PROCEDURE Netprofit @Monthlist NVARCHAR(MAX), @Year INT
+AS
+DECLARE @MonthsTable TABLE (Month INT); -- Declared a temp table(I created a tempory table with one column say month(with an integer datatype))
+
+    INSERT INTO @MonthsTable (Month)
+    SELECT CAST(value AS INT) -- converts each value as an integer instead of a text
+    FROM STRING_SPLIT(@MonthList, ',') -- the dtring split fuction was used to break the list into individual values.
+SELECT
+    MONTH(sales.orderDate) AS Month_,
+    YEAR(sales.orderDate) AS Year_,
+    SUM((sales.orderQuantity * product_lookup.productPrice) - (sales.orderQuantity * product_lookup.productCost)) /
+    SUM(sales.orderQuantity * product_lookup.productCost) * 100 AS NetProfitMargin
+FROM
+    sales
+LEFT JOIN
+    product_lookup ON sales.productKey = product_lookup.productkey
+WHERE
+     MONTH(sales.orderDate) IN (SELECT Month FROM @MonthsTable) AND YEAR(sales.orderDate) = @Year
+GROUP BY
+    MONTH(sales.orderDate), YEAR(sales.orderDate)
+ORDER BY
+    MONTH(sales.orderDate) ASC;
+
+
+-- January = 1, February = 2 , March = 3, April = 4, May = 5, June = 6, July = 7, August = 8, September = 9, October = 10
+-- November = 11 December = 12
+
+EXEC Netprofit @Monthlist = '1,2,3,4,5,6,7,8,9,10', @Year = 2020;
+
+
+
+
 -- FIND THE TOTAL QAUNTITY ORDERED IN EACH COUNTRY
 
 
@@ -409,3 +444,7 @@ GROUP BY territory.country
 ORDER BY SUM(returnQuantity) DESC;
 
 EXEC YearlyReturns @returns_date = 2022; 
+
+-- WHICH PRODUCT CATEGORY WAS RETURNED MOST
+
+SELECT pr
