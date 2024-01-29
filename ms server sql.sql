@@ -382,7 +382,6 @@ DECLARE @MonthsTable TABLE (Month INT); -- Declared a temp table(I created a tem
     FROM STRING_SPLIT(@MonthList, ',') -- the dtring split fuction was used to break the list into individual values.
 SELECT
     MONTH(sales.orderDate) AS Month_,
-    YEAR(sales.orderDate) AS Year_,
     SUM((sales.orderQuantity * product_lookup.productPrice) - (sales.orderQuantity * product_lookup.productCost)) /
     SUM(sales.orderQuantity * product_lookup.productCost) * 100 AS NetProfitMargin
 FROM
