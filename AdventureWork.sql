@@ -259,6 +259,8 @@ WHERE DATE_PART('year',sales.orderdate) = 2021
 GROUP BY territory.region,territory.country 
 ORDER BY SUM(orderquantity) DESC;
 
+
+-- territory
 SELECT territory.region,territory.country, SUM(orderquantity) AS TotalOrders
 FROM sales
 INNER JOIN territory
