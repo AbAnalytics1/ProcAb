@@ -339,6 +339,6 @@ ORDER BY SUM(ROUND((product_lookup.productprice * sales.orderquantity),2)) DESC
 LIMIT 10;
 
 
--- God is GOOD
+-- The analysis ends here
 
 
