@@ -337,6 +337,7 @@ ON product_lookup.productkey = sales.productkey
 GROUP BY CONCAT(customer_lookup.first_name,' ',customer_lookup.last_name)
 ORDER BY SUM(ROUND((product_lookup.productprice * sales.orderquantity),2)) DESC
 LIMIT 10;
+-- Give your life to Jesus
 
 
 -- The analysis ends here
