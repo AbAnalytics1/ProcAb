@@ -316,7 +316,7 @@ INNER JOIN calendar ON sales.orderdate = calendar.orderdate;
 
 
 
--- what was the total sales generated from each customer
+-- what was the total sales generated from each customers
 
 SELECT CONCAT(customer_lookup.first_name,' ',customer_lookup.last_name), SUM(ROUND((product_lookup.productprice * sales.orderquantity),2)) As Total_sales
 FROM sales
